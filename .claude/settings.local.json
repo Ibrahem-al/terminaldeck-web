@@ -20,7 +20,12 @@
       "Bash(where py:*)",
       "Bash(py -m pip install playwright)",
       "Bash(py -m playwright install chromium)",
-      "Bash(sed:*)"
+      "Bash(sed:*)",
+      "Bash(py -m pip install Pillow)",
+      "Bash(export ELECTRON_BUILDER_ALLOW_UNRESOLVED_DEPENDENCIES=true)",
+      "Bash(rm -rf \"C:/Users/ibrah/AppData/Local/electron-builder/Cache/winCodeSign\")",
+      "Bash(CSC_IDENTITY_AUTO_DISCOVERY=false npx electron-builder --win portable --x64 -c.npmRebuild=false -c.win.signAndEditExecutable=false)",
+      "Bash(ls -lh \"C:/Users/ibrah/OneDrive/Documents/Cursor/terminal_deck_finalwebsite_v3/deployment/windows/dist/\"*.exe)"
     ]
   }
 }

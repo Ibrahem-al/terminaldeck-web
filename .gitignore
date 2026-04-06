@@ -26,3 +26,5 @@ dist-ssr
 # Deployment source (app code, not website)
 deployment/
 screenshots/
+
+.vercel
