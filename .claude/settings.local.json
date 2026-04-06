@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc -l \"/c/Users/ibrah/OneDrive/Documents/Cursor/claude_deck_v4/src/renderer\"/**/*.tsx)",
+      "Bash(npx --yes create-vite@latest temp_scaffold --template react-ts)",
+      "Bash(cp -r temp_scaffold/* .)",
+      "Bash(cp temp_scaffold/.gitignore .)",
+      "Bash(cp temp_scaffold/.eslintrc* .)",
+      "Bash(rm -rf temp_scaffold)",
+      "Bash(rm -f src/App.css src/index.css)",
+      "Bash(rm -rf src/assets)",
+      "Bash(kill %1)",
+      "Read(//tmp/**)",
+      "Bash(rm -f src/components/three/FloatingTerminal.tsx src/components/three/GridFloor.tsx src/components/three/DataParticles.tsx src/components/three/SceneContainer.tsx src/hooks/useLenis.ts src/hooks/useScrollProgress.ts)",
+      "Bash(rmdir src/components/three src/components/shaders src/components/ui)",
+      "Bash(mkdir -p src/components/canvas)",
+      "Bash(pip install:*)",
+      "Bash(python -m playwright install chromium)",
+      "Bash(where python:*)",
+      "Bash(where py:*)",
+      "Bash(py -m pip install playwright)",
+      "Bash(py -m playwright install chromium)",
+      "Bash(sed:*)"
+    ]
+  }
+}
