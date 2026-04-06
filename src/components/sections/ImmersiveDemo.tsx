@@ -22,7 +22,7 @@ export function ImmersiveDemo() {
   const exitOpacity = useTransform(scrollYProgress, [0.62, 0.72, 1], [0, 1, 0])
 
   return (
-    <div ref={containerRef} className="relative" style={{ height: '150vh' }}>
+    <div id="demo" ref={containerRef} className="relative" style={{ height: '150vh' }}>
       {/* Floating label before zoom-in */}
       <motion.div
         style={{ opacity: labelOpacity, y: labelY }}
