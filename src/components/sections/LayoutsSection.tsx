@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useRef, useState } from 'react'
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 
 const COLORS = ['#4a9eff', '#00e68a', '#ffc857', '#a78bfa']
 const LAYOUTS = [
@@ -24,11 +24,22 @@ const LAYOUTS = [
 export function LayoutsSection() {
   const [active, setActive] = useState(0)
   const layout = LAYOUTS[active]
+  const ref = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
+  const y = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], [60, 0, 0, -30])
 
   return (
-    <section className="relative py-16 overflow-hidden" id="showcase">
-      <div className="max-w-6xl mx-auto px-8">
-        <div className="text-center mb-10">
+    <section ref={ref} className="relative py-16 overflow-hidden" id="showcase">
+      <motion.div style={{ opacity, y }} className="max-w-6xl mx-auto px-8">
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-10%' }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-10"
+        >
           <p className="text-xs font-mono text-cyan tracking-widest uppercase mb-5">Canvas Layouts</p>
           <h2 className="text-5xl sm:text-6xl font-bold leading-tight mb-6">
             One Click. <span className="text-cyan text-glow">Perfect.</span>
@@ -36,12 +47,18 @@ export function LayoutsSection() {
           <p className="text-lg text-text-mid max-w-xl mx-auto leading-relaxed">
             Instantly rearrange all terminals with layout presets. Save your own custom arrangements and recall them anytime.
           </p>
-        </div>
+        </motion.div>
 
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Preview */}
-          <div className="w-full rounded-2xl border border-border bg-void-light overflow-hidden shadow-2xl shadow-black/50"
-            style={{ aspectRatio: '4/3' }}>
+          <motion.div
+            initial={{ opacity: 0, x: -40, scale: 0.95 }}
+            whileInView={{ opacity: 1, x: 0, scale: 1 }}
+            viewport={{ once: true, margin: '-10%' }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="w-full rounded-2xl border border-border bg-void-light overflow-hidden shadow-2xl shadow-black/50"
+            style={{ aspectRatio: '4/3' }}
+          >
             <div className="relative w-full h-full">
               <div className="absolute inset-0 opacity-[0.03]" style={{
                 backgroundImage: 'linear-gradient(rgba(74,158,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(74,158,255,0.5) 1px, transparent 1px)',
@@ -76,14 +93,23 @@ export function LayoutsSection() {
                 <div className="absolute top-1/2 left-0 right-0 h-px border-t border-dashed border-cyan/20" />
               </motion.div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Controls */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-10%' }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
             <h3 className="text-sm font-mono text-text-dim uppercase tracking-widest mb-6">Layout Presets</h3>
             <div className="space-y-3 mb-8">
               {LAYOUTS.map((l, i) => (
-                <button key={i} onClick={() => setActive(i)}
+                <motion.button key={i} onClick={() => setActive(i)}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 + i * 0.08 }}
                   className={`w-full text-left px-6 py-4 rounded-xl text-sm font-medium transition-all ${
                     i === active
                       ? 'bg-cyan/12 text-cyan border border-cyan/25 shadow-lg shadow-cyan/5'
@@ -91,16 +117,16 @@ export function LayoutsSection() {
                   }`}>
                   <div className="font-semibold">{l.name}</div>
                   <div className="text-[11px] text-text-dim mt-1">{l.desc}</div>
-                </button>
+                </motion.button>
               ))}
             </div>
 
             <p className="text-xs text-text-dim leading-relaxed px-1">
               Save your current arrangement as a custom preset. Reapply it anytime to restore exact positions and sizes.
             </p>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }
