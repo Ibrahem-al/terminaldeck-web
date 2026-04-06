@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { DOWNLOADS } from '../../config/downloads'
 
 export function Footer() {
@@ -24,9 +25,16 @@ export function Footer() {
             ))}
           </div>
         </div>
-        <div className="mt-7 pt-5 border-t border-border text-center text-[11px] text-text-dim">
-          <p>Built for developers who refuse to be limited by tabs.</p>
-          <p className="mt-0.5">Windows & macOS — Free & Open Source</p>
+        <div className="mt-5 pt-5 border-t border-border flex flex-col items-center gap-3">
+          <div className="flex flex-wrap justify-center gap-5 text-[12px] text-text-dim">
+            <Link to="/privacy" className="hover:text-cyan transition-colors">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-cyan transition-colors">Terms of Service</Link>
+            <Link to="/eula" className="hover:text-cyan transition-colors">EULA</Link>
+          </div>
+          <div className="text-center text-[11px] text-text-dim">
+            <p>Built for developers who refuse to be limited by tabs.</p>
+            <p className="mt-0.5">&copy; {new Date().getFullYear()} TerminalDeck. All rights reserved.</p>
+          </div>
         </div>
       </div>
     </footer>

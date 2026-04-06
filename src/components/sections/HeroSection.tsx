@@ -56,9 +56,9 @@ export function HeroSection() {
             className="px-7 py-3 rounded-lg font-semibold text-white bg-cyan hover:brightness-110 transition-all glow-box">
             Download for Windows
           </a>
-          <a href={DOWNLOADS.macos}
+          <a href={DOWNLOADS.macos} target="_blank" rel="noopener noreferrer"
             className="px-7 py-3 rounded-lg font-semibold text-text-mid border border-border hover:border-cyan/30 hover:text-text transition-all">
-            Download for macOS
+            macOS — Build Guide
           </a>
         </motion.div>
 

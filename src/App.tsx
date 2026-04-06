@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { LoadingScreen } from './components/loading/LoadingScreen'
 import { Navbar } from './components/layout/Navbar'
 import { HeroSection } from './components/sections/HeroSection'
@@ -9,8 +10,11 @@ import { FocusModeSection } from './components/sections/FocusModeSection'
 import { FeaturesGrid } from './components/sections/FeaturesGrid'
 import { CTASection } from './components/sections/CTASection'
 import { Footer } from './components/sections/Footer'
+import { PrivacyPolicy } from './pages/PrivacyPolicy'
+import { TermsOfService } from './pages/TermsOfService'
+import { Eula } from './pages/Eula'
 
-export default function App() {
+function LandingPage() {
   const [loaded, setLoaded] = useState(false)
   const onComplete = useCallback(() => setLoaded(true), [])
 
@@ -31,5 +35,18 @@ export default function App() {
         <Footer />
       </div>
     </>
+  )
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<TermsOfService />} />
+        <Route path="/eula" element={<Eula />} />
+      </Routes>
+    </BrowserRouter>
   )
 }

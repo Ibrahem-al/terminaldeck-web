@@ -42,7 +42,7 @@ export function Navbar() {
               {item.label}
             </a>
           ))}
-          <a href={DOWNLOADS.releases}
+          <a href="#download"
             className="px-4 py-1.5 rounded-md text-[13px] font-medium text-cyan border border-cyan/20 hover:bg-cyan/10 transition-all">
             Download
           </a>
