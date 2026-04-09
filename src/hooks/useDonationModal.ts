@@ -25,10 +25,9 @@ export function useDonationModal() {
   }, [triggerPendingDownload])
 
   const closeForDonation = useCallback(() => {
-    triggerPendingDownload()
     setIsOpen(false)
     setPendingUrl(null)
-  }, [triggerPendingDownload])
+  }, [])
 
   return { isOpen, interceptDownload, dismiss, closeForDonation }
 }
