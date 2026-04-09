@@ -30,6 +30,7 @@ export function Footer() {
             <Link to="/privacy" className="hover:text-cyan transition-colors">Privacy Policy</Link>
             <Link to="/terms" className="hover:text-cyan transition-colors">Terms of Service</Link>
             <Link to="/eula" className="hover:text-cyan transition-colors">EULA</Link>
+            <Link to="/donate" className="hover:text-cyan transition-colors">Support Us</Link>
           </div>
           <div className="text-center text-[11px] text-text-dim">
             <p>Built for developers who refuse to be limited by tabs.</p>

@@ -12,7 +12,7 @@ const fadeUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
 }
 
-export function HeroSection() {
+export function HeroSection({ onDownloadClick }: { onDownloadClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void }) {
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
   const opacity = useTransform(scrollYProgress, [0, 0.6, 1], [1, 1, 0])
@@ -52,15 +52,15 @@ export function HeroSection() {
         </motion.p>
 
         <motion.div variants={fadeUp} className="flex flex-wrap justify-center gap-3">
-          <a href={DOWNLOADS.windows}
+          <a href={DOWNLOADS.windows} onClick={onDownloadClick}
             className="px-7 py-3 rounded-lg font-semibold text-white bg-cyan hover:brightness-110 transition-all glow-box">
             Download for Windows
           </a>
-          <a href={DOWNLOADS.windowsGuide} target="_blank" rel="noopener noreferrer"
+          <a href={DOWNLOADS.windowsGuide} target="_blank" rel="noopener noreferrer" onClick={onDownloadClick}
             className="px-7 py-3 rounded-lg font-semibold text-text-mid border border-border hover:border-cyan/30 hover:text-text transition-all">
             Windows — Build Guide
           </a>
-          <a href={DOWNLOADS.macos} target="_blank" rel="noopener noreferrer"
+          <a href={DOWNLOADS.macos} target="_blank" rel="noopener noreferrer" onClick={onDownloadClick}
             className="px-7 py-3 rounded-lg font-semibold text-text-mid border border-border hover:border-cyan/30 hover:text-text transition-all">
             macOS — Build Guide
           </a>

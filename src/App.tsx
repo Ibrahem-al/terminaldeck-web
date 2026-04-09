@@ -10,13 +10,17 @@ import { FocusModeSection } from './components/sections/FocusModeSection'
 import { FeaturesGrid } from './components/sections/FeaturesGrid'
 import { CTASection } from './components/sections/CTASection'
 import { Footer } from './components/sections/Footer'
+import { DonationModal } from './components/donation/DonationModal'
+import { useDonationModal } from './hooks/useDonationModal'
 import { PrivacyPolicy } from './pages/PrivacyPolicy'
 import { TermsOfService } from './pages/TermsOfService'
 import { Eula } from './pages/Eula'
+import { DonatePage } from './pages/DonatePage'
 
 function LandingPage() {
   const [loaded, setLoaded] = useState(false)
   const onComplete = useCallback(() => setLoaded(true), [])
+  const { isOpen, interceptDownload, dismiss, closeForDonation } = useDonationModal()
 
   return (
     <>
@@ -24,16 +28,17 @@ function LandingPage() {
       <div style={{ opacity: loaded ? 1 : 0, transition: 'opacity 0.3s ease' }}>
         <Navbar />
         <main>
-          <HeroSection />
+          <HeroSection onDownloadClick={interceptDownload} />
           <ImmersiveDemo />
           <TerminalPowerSection />
           <LayoutsSection />
           <FocusModeSection />
           <FeaturesGrid />
-          <CTASection />
+          <CTASection onDownloadClick={interceptDownload} />
         </main>
         <Footer />
       </div>
+      <DonationModal isOpen={isOpen} onDismiss={dismiss} onDonate={closeForDonation} />
     </>
   )
 }
@@ -46,6 +51,7 @@ export default function App() {
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<TermsOfService />} />
         <Route path="/eula" element={<Eula />} />
+        <Route path="/donate" element={<DonatePage />} />
       </Routes>
     </BrowserRouter>
   )
